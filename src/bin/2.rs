@@ -35,17 +35,12 @@ fn p2(input: &Vec<String>) -> Result<i32, Box<dyn Error>> {
                 .map(|x| x.parse::<i32>())
                 .collect::<Result<Vec<_>, _>>()?;
             let mut skip_indexes = std::iter::once(None).chain((0..levels.len()).map(Some));
-            let success = skip_indexes.any(|skip_indexes| {
+            // is there success by skipping any of the elements(indexes)
+            let success = skip_indexes.any(|idx| {
                 let levels = levels
                     .iter()
                     .enumerate()
-                    .filter_map(|(i, x)| {
-                        if Some(i) == skip_indexes {
-                            None
-                        } else {
-                            Some(*x)
-                        }
-                    })
+                    .filter_map(|(i, x)| if Some(i) == idx { None } else { Some(*x) })
                     .collect::<Vec<_>>();
                 let decreasing = levels.iter().tuple_windows().all(|(a, b)| a < b);
                 let increasing = levels.iter().tuple_windows().all(|(a, b)| a > b);
