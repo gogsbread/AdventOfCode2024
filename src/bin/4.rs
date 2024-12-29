@@ -73,11 +73,6 @@ fn p2(input: &Vec<String>) -> Result<i32, Box<dyn Error>> {
         })
         .map(|x| x as i32)
         .sum::<i32>())
-    // filter all positions with A
-    // check if check -1, -1 and 1,1 is MAS
-    // check if 1,1 and -1-1 is MAS
-    //is some(M) and 1,1 is some S
-    // chef if
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
