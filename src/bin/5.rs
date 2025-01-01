@@ -13,10 +13,10 @@ fn p1(input: &Vec<String>) -> Result<i32, Box<dyn Error>> {
         .filter(|l| l.contains(','))
         .map(|l| -> Result<i32, Box<dyn Error>> {
             let l: Vec<_> = l.split(',').collect();
-            if l.iter().tuple_windows().all(|(u, v)| {
-                let f = format!("{}|{}", u, v);
-                rules.contains(&&f)
-            }) {
+            if l.iter()
+                .tuple_windows()
+                .all(|(u, v)| rules.contains(&&format!("{}|{}", u, v)))
+            {
                 Ok(l[l.len() / 2].parse::<i32>()?)
             } else {
                 Ok(0)
